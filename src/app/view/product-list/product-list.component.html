@@ -1,0 +1,74 @@
+<mat-grid-list cols="1" rowHeight="6:1">
+  <mat-grid-tile>
+
+    <div class="checkboxx">
+      <mat-checkbox [formControl]="disableSelect" >Change filter</mat-checkbox>
+    </div>
+
+    <mat-form-field class="stack-form" appearance="fill">
+      <mat-label>Stacks</mat-label>
+      <mat-select [formControl]="idsStack" multiple [disabled]="!disableSelect.value">
+        <mat-option *ngFor="let idsStack of stacks" [value]="idsStack.id">{{idsStack.description}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <button (click)="filterStacks()" [disabled]="!disableSelect.value">Search</button>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Target Markets</mat-label>
+      <mat-select [formControl]="idsTargetMarket" multiple [disabled]="disableSelect.value">
+        <mat-option *ngFor="let idsTargetMarket of targetMarkets" [value]="idsTargetMarket.id">{{idsTargetMarket.description}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+
+    <button (click)="filterTargetMarkets()" [disabled]="disableSelect.value">Search</button>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <table mat-table [dataSource]="products" class="mat-elevation-z8">
+        <!-- ProductName Column -->
+        <ng-container matColumnDef="productName">
+          <th mat-header-cell *matHeaderCellDef> Product Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+        </ng-container>
+      
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+      
+        <!-- TargetMarket Column -->
+        <ng-container matColumnDef="targetMarket">
+          <th mat-header-cell *matHeaderCellDef> Target Markets </th>
+          <td mat-cell *matCellDef="let element"> 
+              <span *ngFor="let tm of element.targetMarkets"> {{tm}}, </span> </td>
+        </ng-container>
+      
+        <!-- Stack Column -->
+        <ng-container matColumnDef="stack">
+          <th mat-header-cell *matHeaderCellDef> Stack </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngFor="let st of element.stacks"> {{st}}, </span> </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+ 
+  
+
+
+
+
+
+
+  
+

@@ -1,0 +1,14 @@
+.mat-form-field {
+    margin-left: 60px;
+    font-weight: bold;
+}
+
+.mat-elevation-z8{
+    border: 1px solid currentColor;
+}
+.mat-column-productName, .mat-column-description, .mat-column-targetMarket,.mat-column-stack {
+    border: 1px solid currentColor;
+    padding-left: 24px;
+    padding-right: 4px;
+}
+
